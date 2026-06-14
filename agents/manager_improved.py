@@ -16,7 +16,7 @@ client = AsyncOpenAI(
     timeout=30.0  # 30 сек timeout
 )
 
-# Кэш для RAG результатов (в продакшене использовать Redis)
+# Кэш для RAG результатов 
 rag_cache = {}
 RAG_CACHE_TTL = 3600  # 1 час
 
