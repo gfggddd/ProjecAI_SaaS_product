@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # Основное приложение
+  bot-app:
+    build: .
+    ports:
+      - "8001:8001"
+    environment:
+      - ENVIRONMENT=production
+      - DEBUG=False
+      - DATABASE_URL=postgresql://user:password@postgres:5432/barberbot
+    volumes:
+      - ./logs:/app/logs
+      - ./chroma_db:/app/chroma_db
+      - ./.env:/app/.env:ro
+    depends_on:
+      - postgres
+      - redis
+    restart: always
+
+  # PostgreSQL база данных (для Production)
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: barberbot
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  # Redis для кэширования
+  redis:
+    image: redis:7
+    restart: always
+    volumes:
+      - redis_data:/data
+
+  # PgAdmin для управления БД (опционально)
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    restart: always
+
+volumes:
+  postgres_data:
+  redis_data:

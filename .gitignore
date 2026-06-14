@@ -1,0 +1,67 @@
+# .gitignore для BarberBot AI проекта
+
+# Окружение и ключи
+.env
+.env.local
+.env.*.local
+creds.json
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Логи и базы данных
+logs/
+*.log
+chroma_db/
+*.db
+*.sqlite
+*.sqlite3
+
+# Кэш
+.cache/
+.pytest_cache/
+.coverage
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Временные файлы
+*.tmp
+*.bak
+*~
+
+# Папка конфигов пользователей
+user_configs/

@@ -1,0 +1,32 @@
+# Используемое приложение: BarberBot AI
+# Версия: 1.0.0
+# Язык: Python 3.9+
+
+python-dotenv==1.0.0
+openai==2.38.0
+aiogram==3.1.1
+fastapi==0.104.1
+uvicorn==0.24.0
+aiohttp>=3.8.5,<3.10.0
+asyncio-contextmanager==1.0.1
+
+# Базы данных и хранилище
+gspread==6.0.0
+oauth2client==4.1.3
+chromadb==0.4.10
+langchain==0.1.0
+langchain-chroma==0.1.0
+sentence-transformers==2.2.2
+
+# Утилиты
+python-multipart==0.0.6
+pydantic>=2.4.2,<3.0.0
+httpx==0.25.0
+
+# Логирование и отладка
+python-json-logger==2.0.7
+
+# Опционально для Production
+gunicorn==21.2.0
+psycopg2-binary==2.9.9
+redis==5.0.0
