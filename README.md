@@ -1,30 +1,28 @@
 # 🤖 Project.AI - Production-Ready Booking Bot SaaS
 
-![Version](https://img.shields.io/badge/version-1.1-brightgreen)
-![Status](https://img.shields.io/badge/status-Production%20Ready-green)
-![Security](https://img.shields.io/badge/security-93%2F100-blue)
-![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 
 **Полностью готовая к production система для управления бронированиями через Telegram и WhatsApp**
 
+### Что делает проект
+Это проект на основе ИИ агентов Модел **Deepseek** для векторный базы данных я использую **ChromaDB**. ИИ агент manager_improved.py он общается с клиентом отвечает на вопросы и извликает от клиента имя, номер. агент extractor_improved.py принимает эти данные и сохрнаяет в Goolge таблицу.
 ---
 
 ## 📚 Документация
+___
+### tools 
+1.RagCache: Простой кэш для RAG результатов
+2.process_booking_request: Обрабатывает запрос на запись с проверкой занятости.
+3.clean_and_repair_json: Очищает и восстанавливает JSON из ответа ИИ.
+4.run_extractor_agent: Извлекает структурированные данные из истории чата.
+5.search_business_info: функция который читает базу данных
+6.rebuild_vector_store: Тяжелая функция для полной пересборки векторный базы данных.
+___
 
-**Начните с:**
-1. **[QUICKSTART.md](QUICKSTART.md)** - За 5 минут до первого запуска 
-2. **[MIGRATION_GUIDE.md](MIGRATION_GUIDE.md)** - Как обновиться с v1.0 на v1.1 
-3. **[SECURITY_AUDIT.md](SECURITY_AUDIT.md)** - Полный аудит безопасности 
+### Стек проекта 
+**Python, LangGraph, ChromaDB, aiogram, FastAPI**
+___
 
-**Справочная документация:**
-- [INDEX.md](INDEX.md) - Индекс файлов и приоритет чтения
-- [STATISTICS.md](STATISTICS.md) - Метрики, performance, масштабирование
-- [VERSION_HISTORY.md](VERSION_HISTORY.md) - История версий и манифест
-- [SETUP.md](SETUP.md) - Детальная инструкция установки
-
----
-
-## ⚡ Быстрый старт (2 минуты)
+## Быстрый старт 
 
 ```bash
 # 1. Активировать виртуальное окружение
@@ -47,14 +45,14 @@ curl http://localhost:8001/health
 ### 📱 Боты (Production-ready)
 
 ```
-main_tg_improved.py (320 строк)
+main_tg_improved.py
 ├─ Rate limiting (10 req/min)
 ├─ Data validation (все входные данные)
 ├─ Background task execution
 ├─ Session cleanup (hourly)
 └─ Comprehensive logging
 
-main_wa_improved.py (380 строк)
+main_wa_improved.py
 ├─ FastAPI webhook server
 ├─ /health endpoint (мониторинг)
 ├─ /metrics endpoint (статистика)
@@ -66,20 +64,20 @@ main_wa_improved.py (380 строк)
 ### 🤖 AI Agents
 
 ```
-agents/manager_improved.py (280 строк)
+agents/manager_improved.py 
 ├─ RAG caching (1 hour TTL)
 ├─ LLM timeout (25 sec)
 ├─ History limit (50 messages)
 └─ Error recovery
 
-agents/extractor_improved.py (200 строк)
+agents/extractor_improved.py 
 ├─ Safe JSON parsing
 ├─ Graceful fallback
 ├─ Markdown cleanup
 └─ Type-safe extraction
 ```
 
-### 🔐 Security & Monitoring
+###  Security & Monitoring
 
 ```
 security.py
@@ -111,28 +109,6 @@ Data Layer (Google Sheets + Chroma DB)
 Monitoring (Health checks + Metrics)
 ```
 
----
-
-
-
-### Performance (5x faster)
-
-```
-Operation           Before  After   Improvement
-────────────────────────────────────────────
-LLM cached          15s     2s      7.5x faster
-Message processing  5-10s   1-3s    5x faster
-Health check        N/A     <50ms   Instant
-Rate limit check    N/A     <1ms    Instant
-```
-
-### Scalability
-
-```
-Before (v1.0):     10 concurrent users
-After (v1.1):      100 concurrent users
-Ready for:         1000+ with PostgreSQL
-```
 
 ---
 
@@ -199,83 +175,8 @@ LOG_LEVEL=INFO
 MAX_REQUESTS_PER_MINUTE=10
 ```
 
----
 
-## Тестирование
 
-### Health Check
-
-```bash
-curl http://localhost:8001/health
-
-# Output:
-{
-  "status": "healthy",
-  "components": {
-    "filesystem": "healthy",
-    "logging": "healthy",
-    "config": "healthy"
-  }
-}
-```
-
-### Metrics
-
-```bash
-curl http://localhost:8001/metrics
-
-# Output:
-{
-  "uptime_seconds": 3600,
-  "request_count": 1250,
-  "error_count": 3,
-  "error_rate": 0.0024
-}
-```
-
----
-
-##  Производительность
-
-### Memory Usage
-```
-Before: 170 MB per instance
-After:  90 MB per instance
-Saved:  47% reduction
-```
-
-### Response Time
-```
-Before: 10-15 seconds average
-After:  2-3 seconds average
-Improvement: 5x faster
-```
-
-### Uptime
-```
-Before: 95% (380 hours/year downtime)
-After:  99.9% (8.7 hours/year downtime)
-Improvement: 99.7% reliability increase
-```
-
----
-
-## Масштабирование
-
-### Текущий уровень (v1.1)
-- ✅ 100 concurrent users
-- ✅ 1000 requests/day
-- ✅ Single server deployment
-
-### Next Level (2-3 недели)
-- 🔄 PostgreSQL (1000 users)
-- 🔄 Redis caching (5000 requests/day)
-- 🔄 Load balancing
-
-### Enterprise (1 месяц+)
-- 📅 Kubernetes (10000+ users)
-- 📅 Multi-region (Global scale)
-- 📅 Advanced analytics
 
 ---
 
@@ -296,33 +197,33 @@ docker-compose up --build
 
 ```
 Project.AI/
-├── 📱 Боты (Production)
+├──  Боты (Production)
 │   ├── main_tg_improved.py
 │   └── main_wa_improved.py
 │
-├── 🤖 Agents
+├──  Agents
 │   ├── agents/manager_improved.py
 │   ├── agents/extractor_improved.py
 │   └── agents/rag_storage.py
 │
-├── 🔐 Core
+├──  Core
 │   ├── security.py
 │   ├── health_check.py
 │   └── error_handler.py
 │
-├── 📚 Docs
+├──  Docs
 │   ├── README.md (THIS)
 │   ├── QUICKSTART.md
 │   ├── MIGRATION_GUIDE.md
 │   ├── SECURITY_AUDIT.md
 │   └── STATISTICS.md
 │
-├── 🛠️ Tools
+├──  Tools
 │   ├── init_project.py
 │   ├── duplicate_for_business.py
 │   └── config_new.py
 │
-├── 💾 Data
+├──  Data
 │   ├── database/sheets.py
 │   ├── BASE_VECTOR/
 │   └── chroma_db/
@@ -335,16 +236,16 @@ Project.AI/
 
 ---
 
-## 🔒 Безопасность
+##  Безопасность
 
 ### Встроенные защиты
 
-✅ **Rate Limiting** - 10 запросов/минута на пользователя  
-✅ **Input Validation** - Все входные данные проверены  
-✅ **Timeout Protection** - 25-30 сек на все API запросы  
-✅ **Circuit Breaker** - Защита от cascade failures  
-✅ **Secure Logging** - Никаких чувствительных данных  
-✅ **Error Recovery** - Автоматическое восстановление
+ **Rate Limiting** - 10 запросов/минута на пользователя  
+ **Input Validation** - Все входные данные проверены  
+ **Timeout Protection** - 25-30 сек на все API запросы  
+ **Circuit Breaker** - Защита от cascade failures  
+ **Secure Logging** - Никаких чувствительных данных  
+ **Error Recovery** - Автоматическое восстановление
 
 ---
 
@@ -375,33 +276,9 @@ tail -f logs/app.log | grep ERROR
 
 ---
 
-## Support
-
 ### Вопросы?
 
 1. Прочитайте [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md#-faq)
 2. Проверьте [SECURITY_AUDIT.md](SECURITY_AUDIT.md)
 3. Смотрите логи: `tail -f logs/app.log`
 4. Health check: `curl http://localhost:8001/health`
-
----
-
-
-## 🎓 Итого
-
-**Этот проект - готовая к продаже SaaS система:**
-
-- ✅ 3,480 строк production code
-- ✅ 3,000 строк документации
-- ✅ 93/100 security score
-- ✅ 99.9% uptime capability
-- ✅ 1000+ users scalable
-- ✅ Ready for immediate deployment
-
-**Начните с [QUICKSTART.md](QUICKSTART.md)** 
-
----
-
-*v1.1 Production Ready | 2026-06-09*
-#   P r o j e c A I _ S a a S _ p r o d u c t  
- 
